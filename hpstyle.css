@@ -1,0 +1,358 @@
+:root {
+    --bg-dark-coffee: #231709;
+    --text-white: #FFFFFF;
+    --accent-cream: #EEDBB5; /* Changed to cream/beige for consistency */
+    --accent-cream-soft: #F0E5D7; /* Lighter cream for subtitles */
+    --button-text-dark: #231709; /* Dark text on cream buttons */
+
+    --font-heading: 'Merriweather', serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+/* GENERAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-white);
+    background-color: var(--bg-dark-coffee);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+/* TYPOGRAPHY */
+h1 {
+    font-family: var(--font-heading);
+    font-size: 4em; /* Larger for main hero title */
+    line-height: 1.1;
+    color: var(--text-white);
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    text-align: center; /* Center for hero title */
+}
+
+h2 {
+    font-family: var(--font-heading);
+    font-size: 3.5em; 
+    line-height: 1.2;
+    color: var(--text-white);
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5em;
+    color: var(--accent-cream-soft);
+    margin-bottom: 10px;
+}
+
+p.subtitle {
+    font-size: 1.2em;
+    color: var(--accent-cream-soft);
+    margin-bottom: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 12px 25px; /* Slightly smaller for header */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--accent-cream);
+    color: var(--button-text-dark);
+    box-shadow: 0 4px 15px rgba(238, 219, 181, 0.4);
+}
+
+.primary-btn:hover {
+    background-color: #F0E5D7;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(238, 219, 181, 0.6);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--accent-cream);
+    border: 2px solid var(--accent-cream);
+    box-shadow: none;
+}
+
+.secondary-btn:hover {
+    background-color: rgba(240, 229, 215, 0.1);
+    transform: translateY(-3px);
+}
+
+.secondary-btn:active {
+    transform: translateY(0);
+}
+
+/* HEADER SECTION (Homepage Specific) */
+.homepage-header {
+    background: var(--bg-dark-coffee);
+    padding: 10px 0; /* Slightly more padding for header */
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid #33271a; /* Subtle separation */
+}
+
+.homepage-header nav {
+    display: flex;
+    justify-content: space-between; /* Space out logo and buttons */
+    align-items: center;
+    padding: 5px 0; /* Align items */
+}
+
+.homepage-header .logo img {
+    height: 80px; /* Adjust logo size for header */
+    width: auto;
+    display: block;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.header-btn {
+    padding: 8px 18px; /* Smaller padding for header buttons */
+    font-size: 0.95em;
+}
+
+/* HERO SECTION (Homepage Specific) */
+.homepage-hero {
+    min-height: 70vh; /* Make hero section taller */
+    display: flex;
+    flex-direction: column; /* Stack title and image */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.homepage-hero .hero-content {
+    position: relative; /* For z-index over image */
+    z-index: 2;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.homepage-hero h1 {
+    font-size: 4.5em;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(0,0,0,0.7); /* Text shadow for pop */
+}
+
+.hero-image-overlay {
+    position: absolute;
+    bottom: 0; /* Place image at the bottom of the hero */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px; /* Adjust width as needed */
+    height: auto;
+    max-width: 90%; /* Ensure it's responsive */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks through to elements behind */
+}
+
+.central-persona-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 50%; /* If you want a circular image */
+    border: 5px solid var(--accent-cream);
+    box-shadow: 0 0 40px rgba(238, 219, 181, 0.3); /* Cream glow */
+}
+
+/* MY QUIRKS AND FEATURES SECTION */
+.quirks-features-section {
+    padding: 100px 0;
+    text-align: center;
+    background-color: #1a1309; /* Darker background for this section */
+}
+
+.quirks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columns on large, adapts */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.quirk-card {
+    background-color: #2c211b; /* Slightly lighter dark brown */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #3d2f25; /* Subtle border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quirk-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    border-color: var(--accent-cream);
+}
+
+.card-icon {
+    font-size: 3em;
+    color: var(--accent-cream);
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.quirk-card h4 {
+    color: var(--accent-cream);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.quirk-card p {
+    color: #ccc;
+    font-size: 0.95em;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: #1a1309;
+    padding: 40px 0;
+    text-align: center;
+    border-top: 2px solid #33271a;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+.footer-links {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: var(--accent-cream-soft);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-cream);
+}
+
+/* SECURITY SHIELD */
+.security-shield {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.security-shield img {
+    width: 30px;
+    height: 30px;
+}
+
+
+/* RESPONSIVENESS */
+@media (max-width: 992px) {
+    .homepage-header .logo img {
+        height: 70px;
+    }
+    .header-buttons {
+        gap: 10px;
+    }
+    .homepage-hero h1 {
+        font-size: 3.5em;
+    }
+    .hero-image-overlay {
+        width: 450px;
+    }
+    .quirks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-header nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .homepage-header .logo {
+        margin-bottom: 10px;
+    }
+    .homepage-hero h1 {
+        font-size: 2.8em;
+    }
+    .hero-image-overlay {
+        width: 350px;
+    }
+    .quirks-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    .quirk-card {
+        padding: 25px;
+    }
+    h4 {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 576px) {
+    .homepage-hero h1 {
+        font-size: 2em;
+    }
+    .hero-image-overlay {
+        width: 280px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px 20px;
+    }
+    .header-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .header-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
