@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-coffee: #231709;
+            --text-white: #FFFFFF;
+            --accent-cream: #EEDBB5;
+            --accent-cream-soft: #F0E5D7;
+            --border-color: #3d2f25;
+
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-white);
+            background-color: var(--bg-dark-coffee);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        header {
+            background: var(--bg-dark-coffee);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            z-index: 10;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-link img {
+            height: 80px;
+        }
+        .back-link {
+            color: var(--accent-cream);
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 8px 15px;
+            border: 1px solid var(--accent-cream);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: rgba(238, 219, 181, 0.1);
+        }
+
+        .favorites-section {
+            padding: 60px 0 100px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5em;
+            color: var(--accent-cream);
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(238, 219, 181, 0.5);
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px;
+        }
+
+        .favorite-item {
+            background-color: #2c211b;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; 
+            z-index: 1; 
+            overflow: visible;
+        }
+
+        .favorite-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .item-category {
+            font-family: var(--font-heading);
+            font-size: 1.4em;
+            color: var(--accent-cream);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .item-category::before {
+            content: "✦"; 
+            margin-right: 8px;
+            font-size: 1em;
+            line-height: 1;
+        }
+
+        .item-name {
+            font-family: var(--font-body);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--accent-cream-soft);
+            line-height: 1.4;
+            position: relative; 
+            z-index: 2;
+        }
+
+        .favorite-item-bg-image {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: auto;
+            opacity: 0.25;
+            pointer-events: none; 
+            transform: rotate(-15deg); 
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .favorite-item:hover .favorite-item-bg-image {
+            transform: rotate(-5deg);
+        }
+
+        #fav-band .favorite-item-bg-image { content: url('band.jpg'); }
+        #fav-song .favorite-item-bg-image { content: url('song.jpg'); }
+        #fav-genre .favorite-item-bg-image { content: url('genre.jpg'); }
+        #fav-show .favorite-item-bg-image { content: url('show.jpg'); }
+        #fav-movie .favorite-item-bg-image { content: url('movie.jpg'); }
+        #fav-anime .favorite-item-bg-image { content: url('anime.jpg'); }
+        #fav-actor .favorite-item-bg-image { content: url('teagan_croft.jpg'); }
+        #fav-food .favorite-item-bg-image { content: url('food.jpg'); }
+        #fav-drink .favorite-item-bg-image { content: url('drink.jpg'); }
+        #fav-game .favorite-item-bg-image { content: url('game.jpg'); }
+        #fav-car .favorite-item-bg-image { content: url('car.png'); }
+        #fav-color .favorite-item-bg-image { content: url('color.jpg'); }
+        #fav-animal .favorite-item-bg-image { content: url('animal.webp'); }
+        #fav-place .favorite-item-bg-image { content: url('place.jpg'); }
+
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        .starry-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-dark-coffee);
+        }
+
+        #stars1, #stars2, #stars3 {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            box-shadow: 0 0 0 #fff;
+            animation: twinkle 5s linear infinite;
+        }
+
+        #stars1 {
+            width: 1px;
+            height: 1px;
+            box-shadow: 
+                10px 10px #fff, 50px 100px #fff, 80px 30px #fff, 120px 140px #fff, 150px 50px #fff, 200px 20px #fff, 
+                250px 110px #fff, 300px 150px #fff, 350px 60px #fff, 400px 180px #fff, 450px 40px #fff, 500px 130px #fff,
+                550px 90px #fff, 600px 20px #fff, 650px 170px #fff, 700px 70px #fff, 750px 10px #fff, 800px 160px #fff,
+                850px 50px #fff, 900px 120px #fff, 950px 30px #fff, 1000px 190px #fff, 1050px 80px #fff, 1100px 140px #fff,
+                1150px 40px #fff, 1200px 110px #fff, 1250px 20px #fff, 1300px 180px #fff;
+            animation-delay: 0s;
+            background: transparent;
+        }
+
+        #stars2 {
+            width: 2px;
+            height: 2px;
+            box-shadow: 
+                30px 200px #fff, 100px 50px #fff, 180px 250px #fff, 250px 100px #fff, 320px 300px #fff, 400px 50px #fff, 
+                480px 220px #fff, 550px 150px #fff, 630px 350px #fff, 700px 200px #fff, 780px 10px #fff, 850px 280px #fff, 
+                920px 100px #fff, 1000px 400px #fff;
+            animation-duration: 7s;
+            animation-delay: 1.5s;
+            background: transparent;
+        }
+
+        #stars3 {
+            width: 3px;
+            height: 3px;
+            box-shadow: 
+                50px 300px #fff, 150px 450px #fff, 300px 200px #fff, 500px 50px #fff, 750px 350px #fff, 900px 150px #fff, 
+                1100px 450px #fff, 100px 500px #fff;
+            animation-duration: 9s;
+            animation-delay: 3s;
+            background: transparent;
+        }
+
+        footer {
+            background-color: #1a1309;
+            padding: 30px 0; 
+            text-align: center;
+            border-top: 2px solid #33271a;
+            color: #aaa;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .favorites-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 15px;
+            }
+            .favorite-item {
+                padding: 20px;
+            }
+            .favorite-item-bg-image {
+                width: 70px;
+                bottom: -20px;
+                right: -20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-background">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="homepage.html" class="logo-link">
+                <img src="duck_logo.png" alt="Coffee Duck Logo" style="height: 40px;">
+            </a>
+            <a href="homepage.html" class="back-link">
+                ← Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <main class="favorites-section container">
+        <h1>My Personal Favorites</h1>
+
+        <div class="favorites-grid">
+            
+            <div id="fav-band" class="favorite-item">
+                <div class="item-category">Favorite Band</div>
+                <div class="item-name">Chase Atlantic</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Band" alt="Band icon">
+            </div>
+
+            <div id="fav-song" class="favorite-item">
+                <div class="item-category">Favorite Song</div>
+                <div class="item-name">Promise by Laufey</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Song" alt="Song icon">
+            </div>
+
+            <div id="fav-genre" class="favorite-item">
+                <div class="item-category">Favorite Genre</div>
+                <div class="item-name">Alternative RnB</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Genre" alt="Genre icon">
+            </div>
+
+            <div id="fav-show" class="favorite-item">
+                <div class="item-category">Favorite TV Show</div>
+                <div class="item-name">Twenty Five Twenty One</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=TV" alt="TV icon">
+            </div>
+
+            <div id="fav-movie" class="favorite-item">
+                <div class="item-category">Favorite Movie</div>
+                <div class="item-name">Harry Potter and the Deathly Hallows Part:1</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Movie" alt="Movie icon">
+            </div>
+
+            <div id="fav-anime" class="favorite-item">
+                <div class="item-category">Favorite Anime</div>
+                <div class="item-name">Death Note / Black Clover</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Anime" alt="Anime icon">
+            </div>
+
+            <div id="fav-actor" class="favorite-item">
+                <div class="item-category">Favorite Actor/Actress</div>
+                <div class="item-name">Teagan Croft</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Actor" alt="Actor icon">
+            </div>
+            
+            <div id="fav-food" class="favorite-item">
+                <div class="item-category">Favorite Food</div>
+                <div class="item-name">Pizza</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Food" alt="Food icon">
+            </div>
+
+            <div id="fav-drink" class="favorite-item">
+                <div class="item-category">Favorite Drink</div>
+                <div class="item-name">Monster Ultra White</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Drink" alt="Drink icon">
+            </div>
+            
+            <div id="fav-game" class="favorite-item">
+                <div class="item-category">Favorite Game</div>
+                <div class="item-name">Valorant</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Game" alt="Game icon">
+            </div>
+
+            <div id="fav-car" class="favorite-item">
+                <div class="item-category">Favorite Car</div>
+                <div class="item-name">Porsche 964 Turbo</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Car" alt="Car icon">
+            </div>
+
+            <div id="fav-color" class="favorite-item">
+                <div class="item-category">Favorite Color</div>
+                <div class="item-name">Pastel pink</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Color" alt="Color icon">
+            </div>
+
+            <div id="fav-animal" class="favorite-item">
+                <div class="item-category">Favorite Animal</div>
+                <div class="item-name">ShihTzu</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Animal" alt="Animal icon">
+            </div>
+
+            <div id="fav-place" class="favorite-item">
+                <div class="item-category">Favorite Place</div>
+                <div class="item-name">Kyoto, Japan</div>
+                <img class="favorite-item-bg-image" src="https://placehold.co/120x120/38312a/EEDBB5?text=Place" alt="Place icon">
+            </div>
+
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christian Paulo Bernabe. All rights reserved in Intro to Computing.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
