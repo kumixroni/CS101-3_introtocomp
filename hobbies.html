@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interests and Hobbies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-coffee: #231709;
+            --text-white: #FFFFFF;
+            --accent-cream: #EEDBB5;
+            --accent-cream-soft: #F0E5D7;
+            --card-background: rgba(45, 33, 20, 0.9);
+            --card-overlay: rgba(45, 33, 20, 0.95);
+
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-white);
+            background-color: var(--bg-dark-coffee);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        header {
+            background: var(--bg-dark-coffee);
+            padding: 15px 0;
+            border-bottom: 1px solid #33271a;
+            position: relative;
+            z-index: 10;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-link img {
+            height: 80px;
+        }
+        .back-link {
+            color: var(--accent-cream);
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 8px 15px;
+            border: 1px solid var(--accent-cream);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: rgba(238, 219, 181, 0.1);
+        }
+
+        .interests-section {
+            padding: 60px 0 100px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5em;
+            color: var(--accent-cream);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(238, 219, 181, 0.5);
+        }
+
+        .interest-card {
+            position: relative;
+            min-height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .interest-card-image {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(80%) brightness(30%) contrast(150%);
+            transition: filter 0.5s;
+        }
+        
+        .interest-card:hover .interest-card-image {
+            filter: grayscale(0%) brightness(50%) contrast(100%);
+        }
+
+        .interest-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            background-color: var(--card-overlay);
+            min-height: inherit; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            transition: background-color 0.5s;
+        }
+
+        .interest-card-content h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5em;
+            color: var(--accent-cream);
+            border-bottom: 2px solid var(--accent-cream);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            max-width: fit-content;
+        }
+
+        .interest-card-content p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: var(--accent-cream-soft);
+        }
+        
+        #f1 .interest-card-image {
+            background-image: url('formula1.jpg');
+        }
+        #coffee .interest-card-image {
+            background-image: url('coffee.jpg');
+        }
+        #gaming .interest-card-image {
+            background-image: url('gaming.jpg');
+        }
+
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #3d2f25;
+            color: #aaa;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        .starry-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-dark-coffee);
+        }
+
+        #stars1, #stars2, #stars3 {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            box-shadow: 0 0 0 #fff;
+            animation: twinkle 5s linear infinite;
+        }
+
+        #stars1 {
+            width: 1px;
+            height: 1px;
+            box-shadow: 
+                10px 10px #fff, 50px 100px #fff, 80px 30px #fff, 120px 140px #fff, 150px 50px #fff, 200px 20px #fff, 
+                250px 110px #fff, 300px 150px #fff, 350px 60px #fff, 400px 180px #fff, 450px 40px #fff, 500px 130px #fff,
+                550px 90px #fff, 600px 20px #fff, 650px 170px #fff, 700px 70px #fff, 750px 10px #fff, 800px 160px #fff,
+                850px 50px #fff, 900px 120px #fff, 950px 30px #fff, 1000px 190px #fff, 1050px 80px #fff, 1100px 140px #fff,
+                1150px 40px #fff, 1200px 110px #fff, 1250px 20px #fff, 1300px 180px #fff;
+            animation-delay: 0s;
+            background: transparent;
+        }
+
+        #stars2 {
+            width: 2px;
+            height: 2px;
+            box-shadow: 
+                30px 200px #fff, 100px 50px #fff, 180px 250px #fff, 250px 100px #fff, 320px 300px #fff, 400px 50px #fff, 
+                480px 220px #fff, 550px 150px #fff, 630px 350px #fff, 700px 200px #fff, 780px 10px #fff, 850px 280px #fff, 
+                920px 100px #fff, 1000px 400px #fff;
+            animation-duration: 7s;
+            animation-delay: 1.5s;
+            background: transparent;
+        }
+
+        #stars3 {
+            width: 3px;
+            height: 3px;
+            box-shadow: 
+                50px 300px #fff, 150px 450px #fff, 300px 200px #fff, 500px 50px #fff, 750px 350px #fff, 900px 150px #fff, 
+                1100px 450px #fff, 100px 500px #fff;
+            animation-duration: 9s;
+            animation-delay: 3s;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .interest-card-content {
+                padding: 25px;
+            }
+            .interest-card-content h2 {
+                font-size: 2em;
+            }
+            .interest-card-content p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-background">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="homepage.html" class="logo-link">
+                <img src="duck_logo.png" alt="Coffee Duck Logo" style="height: 40px;">
+            </a>
+            <a href="homepage.html" class="back-link">
+                ← Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <main class="interests-section container">
+        <h1>Interests and Disciplines</h1>
+
+        <section id="f1" class="interest-card">
+            <div class="interest-card-image"></div>
+            <div class="interest-card-content">
+                <h2>Formula 1</h2>
+                <p>
+                    My true engagement with Formula 1 began when my girlfriend introduced me to the sport, and I quickly became captivated by its complexity. What fascinates me most is the relentless pursuit of engineering perfection, the strategic ballet of the pit wall, and the high-speed psychological challenge faced by the drivers. It's a sport that perfectly blends cutting-edge technology with high-stakes human performance, teaching me the value of efficiency and precision under intense pressure.
+                </p>
+            </div>
+        </section>
+
+        <section id="coffee" class="interest-card">
+            <div class="interest-card-image"></div>
+            <div class="interest-card-content">
+                <h2>Making Coffee</h2>
+                <p>
+                    My passion for coffee began as a simple curiosity, sparked by my sister in high school, but it truly developed into a craft when I worked as a barista during college. That experience immersed me in the science of brewing, teaching me the importance of controlling every variable from grind size and water temperature to extraction time. This hobby is now my morning ritual, where the meticulous process of crafting the perfect cup reinforces my professional commitment to consistency and attention to detail.
+                </p>
+            </div>
+        </section>
+
+        <section id="gaming" class="interest-card">
+            <div class="interest-card-image"></div>
+            <div class="interest-card-content">
+                <h2>Gaming</h2>
+                <p>
+                    Gaming has always been a central part of my life, evolving from a simple childhood iPad pastime to my primary source of digital entertainment on a custom PC. I enjoy a range of genres, particularly First-Person Shooters, Open World exploration, and Racing games. Whether I'm making split-second decisions in a competitive match or strategically navigating a vast landscape, gaming is my favorite way to sharpen my focus, test my problem-solving skills, and engage with compelling digital narratives.
+                </p>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christian Paulo Bernabe. All rights reserved in Intro to Computing.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
