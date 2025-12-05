@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-coffee: #231709;
+            --text-white: #FFFFFF;
+            --accent-cream: #EEDBB5;
+            --accent-cream-soft: #F0E5D7;
+            --funfact-border: #33271a;
+
+            --font-heading: 'Merriweather', serif;
+            --font-body: 'Open Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-white);
+            background-color: var(--bg-dark-coffee);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        header {
+            background: var(--bg-dark-coffee);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--funfact-border);
+            position: relative;
+            z-index: 10;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-link img {
+            height: 80px;
+        }
+        .back-link {
+            color: var(--accent-cream);
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 8px 15px;
+            border: 1px solid var(--accent-cream);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: rgba(238, 219, 181, 0.1);
+        }
+
+        .fun-facts-section {
+            padding: 60px 0 100px;
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5em;
+            color: var(--accent-cream);
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(238, 219, 181, 0.5);
+        }
+
+        .fun-facts-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fun-facts-list li {
+            font-family: var(--font-body);
+            font-size: 1.25em;
+            color: var(--accent-cream-soft);
+            padding: 15px 0;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 35px;
+            line-height: 1.5;
+        }
+
+        .fun-facts-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .fun-facts-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            top: 15px;
+            font-size: 1.2em;
+            color: var(--accent-cream);
+            line-height: 1;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        .starry-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-dark-coffee);
+        }
+
+        #stars1, #stars2, #stars3 {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            box-shadow: 0 0 0 #fff;
+            animation: twinkle 5s linear infinite;
+        }
+
+        #stars1 {
+            width: 1px;
+            height: 1px;
+            box-shadow: 
+                10px 10px #fff, 50px 100px #fff, 80px 30px #fff, 120px 140px #fff, 150px 50px #fff, 200px 20px #fff, 
+                250px 110px #fff, 300px 150px #fff, 350px 60px #fff, 400px 180px #fff, 450px 40px #fff, 500px 130px #fff,
+                550px 90px #fff, 600px 20px #fff, 650px 170px #fff, 700px 70px #fff, 750px 10px #fff, 800px 160px #fff,
+                850px 50px #fff, 900px 120px #fff, 950px 30px #fff, 1000px 190px #fff, 1050px 80px #fff, 1100px 140px #fff,
+                1150px 40px #fff, 1200px 110px #fff, 1250px 20px #fff, 1300px 180px #fff;
+            animation-delay: 0s;
+            background: transparent;
+        }
+
+        #stars2 {
+            width: 2px;
+            height: 2px;
+            box-shadow: 
+                30px 200px #fff, 100px 50px #fff, 180px 250px #fff, 250px 100px #fff, 320px 300px #fff, 400px 50px #fff, 
+                480px 220px #fff, 550px 150px #fff, 630px 350px #fff, 700px 200px #fff, 780px 10px #fff, 850px 280px #fff, 
+                920px 100px #fff, 1000px 400px #fff;
+            animation-duration: 7s;
+            animation-delay: 1.5s;
+            background: transparent;
+        }
+
+        #stars3 {
+            width: 3px;
+            height: 3px;
+            box-shadow: 
+                50px 300px #fff, 150px 450px #fff, 300px 200px #fff, 500px 50px #fff, 750px 350px #fff, 900px 150px #fff, 
+                1100px 450px #fff, 100px 500px #fff;
+            animation-duration: 9s;
+            animation-delay: 3s;
+            background: transparent;
+        }
+
+        footer {
+            padding: 30px 0; /* Adjusted padding to match other pages */
+            text-align: center;
+            border-top: 1px solid #3d2f25;
+            color: #aaa;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .fun-facts-list li {
+                font-size: 1.1em;
+                padding-left: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            .fun-facts-list li::before {
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-background">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="homepage.html" class="logo-link">
+                <img src="duck_logo.png" alt="Coffee Duck Logo" style="height: 40px;">
+            </a>
+            <a href="homepage.html" class="back-link">
+                ← Back to Home
+            </a>
+        </nav>
+    </header>
+
+    <main class="fun-facts-section container">
+        <h1>Fun Facts About Me</h1>
+
+        <ul class="fun-facts-list">
+            <li>My favorite teacher is Sir Percy.</li>
+            <li>I have double-jointed elbows.</li>
+            <li>I attended an all-boys school from Grade 1 to Grade 12.</li>
+            <li>I've lived in the city my entire life, half of that time being in a condominium.</li>
+            <li>I met my girlfriend through the internet.</li>
+            <li>I am a Capricorn.</li>
+            <li>My birthday is December 24th, which is why my name, Christian, is related to Christmas.</li>
+            <li>I share a similar name with my sibling.</li>
+            <li>I've worn glasses my whole life.</li>
+            <li>I am more of a movie/show person than a book person.</li>
+            <li>I am a kinesthetic learner.</li>
+            <li>I could go a whole year without leaving the house.</li>
+            <li>My preferred jewelry is silver.</li>
+            <li>Ako ang reyna ng Quezon City.</li>
+            <li>I am a Ravenclaw</li>
+        </ul>
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christian Paulo Bernabe. All rights reserved in Intro to Computing.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
