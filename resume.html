@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Paulo C. Bernabe - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-coffee: #231709;
+            --accent-cream: #EEDBB5;
+            --accent-cream-soft: #F0E5D7;
+            --border-color: #3d2f25; 
+
+            --font-heading: 'Merriweather', serif; 
+            --font-body: 'Open Sans', sans-serif; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--accent-cream-soft);
+            background-color: var(--bg-dark-coffee);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
+
+        .starry-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--bg-dark-coffee);
+        }
+
+        #stars1, #stars2, #stars3 {
+            width: 1px;
+            height: 1px;
+            background: transparent;
+            box-shadow: 0 0 0 #fff;
+            animation: twinkle 5s linear infinite;
+        }
+
+        #stars1 {
+            box-shadow: 
+                10px 10px #fff, 50px 100px #fff, 80px 30px #fff, 120px 140px #fff, 150px 50px #fff, 200px 20px #fff, 
+                250px 110px #fff, 300px 150px #fff, 350px 60px #fff, 400px 180px #fff, 450px 40px #fff, 500px 130px #fff,
+                550px 90px #fff, 600px 20px #fff, 650px 170px #fff, 700px 70px #fff, 750px 10px #fff, 800px 160px #fff,
+                850px 50px #fff, 900px 120px #fff, 950px 30px #fff, 1000px 190px #fff, 1050px 80px #fff, 1100px 140px #fff,
+                1150px 40px #fff, 1200px 110px #fff, 1250px 20px #fff, 1300px 180px #fff;
+            animation-delay: 0s;
+        }
+
+        #stars2 {
+            width: 2px;
+            height: 2px;
+            box-shadow: 
+                30px 200px #fff, 100px 50px #fff, 180px 250px #fff, 250px 100px #fff, 320px 300px #fff, 400px 50px #fff, 
+                480px 220px #fff, 550px 150px #fff, 630px 350px #fff, 700px 200px #fff, 780px 10px #fff, 850px 280px #fff, 
+                920px 100px #fff, 1000px 400px #fff;
+            animation-duration: 7s;
+            animation-delay: 1.5s;
+        }
+
+        #stars3 {
+            width: 3px;
+            height: 3px;
+            box-shadow: 
+                50px 300px #fff, 150px 450px #fff, 300px 200px #fff, 500px 50px #fff, 750px 350px #fff, 900px 150px #fff, 
+                1100px 450px #fff, 100px 500px #fff;
+            animation-duration: 9s;
+            animation-delay: 3s;
+        }
+
+        .navigation-tab { 
+            background-color: var(--bg-dark-coffee);
+            padding: 10px 0;
+            box-shadow: none; 
+            position: fixed; 
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+        .navigation-tab .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px; 
+        }
+        
+        .secondary-btn {
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap;
+            background-color: transparent;
+            color: var(--accent-cream); 
+            border: 2px solid var(--accent-cream); 
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--accent-cream);
+            color: var(--bg-dark-coffee);
+        }
+
+        .resume-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            margin-top: 65px; 
+            margin-bottom: 40px;
+            background-color: #1a1309; 
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 3em;
+            color: var(--accent-cream);
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 8px rgba(238, 219, 181, 0.4);
+        }
+        
+        .contact-info-area {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .contact-info-area p {
+            font-size: 1.05em;
+            margin: 5px 0;
+            color: #ccc;
+        }
+        
+        .contact-info-area a {
+            color: var(--accent-cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-info-area a:hover {
+            color: var(--accent-cream-soft);
+        }
+        
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            color: var(--accent-cream);
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-cream);
+            padding-bottom: 5px;
+        }
+
+        .resume-item {
+            margin-bottom: 20px;
+        }
+
+        .job-title, .degree-name {
+            font-weight: 700;
+            color: var(--accent-cream-soft);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .company-name, .school-name {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .dates {
+            color: var(--accent-cream);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .description-list {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .description-list li {
+            position: relative;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .description-list li::before {
+            content: "•";
+            color: var(--accent-cream);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .hobby-list li {
+            margin-bottom: 10px;
+        }
+        
+        .hobby-name {
+            font-weight: 700;
+            color: var(--accent-cream);
+            margin-right: 5px;
+        }
+
+        .link-item a {
+            color: var(--accent-cream);
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        .link-item a:hover {
+            color: var(--accent-cream-soft);
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                padding: 30px 20px;
+                margin-top: 55px;
+            }
+            .page-title {
+                font-size: 2.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="starry-background">
+        <div id="stars1"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    
+    <header class="navigation-tab"> 
+        <nav class="container">
+            <a href="lmeo.html" class="logo">
+                <img src="duck_logo.png" alt="Coffee Duck Logo">
+            </a>
+            
+            <a href="homepage.html" class="secondary-btn">Back to Home</a> 
+        </nav>
+    </header>
+
+
+    <main class="resume-container">
+        
+        <h1 class="page-title">Christian Paulo C. Bernabe</h1>
+
+        <div class="contact-info-area">
+            <p>9-O Dream Tower, 150 E. Rodriguez Jr. Ave. Cor Calle Industria, Bagumbayan, Quezon City 1110</p>
+            <p>
+                Contact No.: +63 995 824 6930 | 
+                Email: <a href="mailto:christian.bernabe@ciit.edu.ph">christian.bernabe@ciit.edu.ph</a> | 
+                Birthdate: December 24, 2004
+            </p>
+        </div>
+
+        <section>
+            <h2 class="section-heading">Objective</h2>
+            <p>
+                Enthusiastic and hardworking individual seeking an entry-level position to gain hands-on experience in the food and beverage industry. Passionate about delivering excellent customer service and contributing to a positive team environment.
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Skills</h2>
+            <ul class="description-list">
+                <li>
+                    <span class="trait-name">Customer Service:</span> Friendly and approachable, with strong communication skills to assist customers and create a welcoming atmosphere.
+                </li>
+                <li>
+                    <span class="trait-name">Teamwork:</span> Cooperative and able to work well in a team environment, supporting colleagues and contributing to team goals.
+                </li>
+                <li>
+                    <span class="trait-name">Time Management:</span> Organized and efficient in managing time, prioritizing tasks, and working under pressure to meet deadlines.
+                </li>
+                <li>
+                    <span class="trait-name">Adaptability:</span> Quick learner who can adapt to new roles and responsibilities, with a willingness to learn and grow.
+                </li>
+                <li>
+                    <span class="trait-name">Attention to Detail:</span> Careful and thorough in completing tasks, ensuring high-quality results and adherence to standards.
+                </li>
+                <li>
+                    <span class="trait-name">Basic Math Skills:</span> Proficient in basic arithmetic, useful for handling cash transactions and operating a register.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Education</h2>
+            <div class="resume-item">
+                <span class="degree-name">iAcademy</span>
+                <span class="school-name">iACADEMY Nexus Campus, 7434 Yakal, Makati, 1203 Metro Manila</span>
+                <span class="dates">2024 - 2023</span>
+            </div>
+            <div class="resume-item">
+                <span class="degree-name">Don Bosco Technical Institute Makati</span>
+                <span class="school-name">Chino Roces Ave, Makati, 1230 Metro Manila</span>
+                <span class="dates">2023 - 2021</span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Work Experience</h2>
+            <div class="resume-item">
+                <span class="job-title">Service Crew</span>
+                <span class="company-name">Gifted Hands Manpower Services INC. (Assign to: Dunkin' Donut Shangri-La Branch)</span>
+                <span class="dates">2025 - 2024</span>
+                <p>
+                    Food Forum Shangri-La Plaza, Ortigas Center, Mandaluyong City, Metro Manila
+                </p>
+                <ul class="description-list">
+                    <li>Responsible for providing excellent customer service, taking orders, and preparing food and beverages in a fast-paced environment like a restaurant, cafe, or retail outlet.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Hobbies and Interests</h2>
+            <ul class="description-list hobby-list">
+                <li>
+                    <span class="hobby-name">Home Barista/Coffee Brewing:</span> Enjoy experimenting with different coffee beans and brewing methods to create unique coffee beverages. Passionate about learning the art and science of coffee making.
+                </li>
+                <li>
+                    <span class="hobby-name">Social Media:</span> Familiar with various social media platforms, useful for promoting brand awareness and engaging with customers.
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2 class="section-heading">Downloadable Document</h2>
+            <ul class="description-list">
+                <li class="link-item">
+                    <span class="trait-name">Resume Document (DOCX):</span> 
+                    <a href="https://docs.google.com/document/d/1aoOQ45R5nvWHUkQex5i-JfYb7BzetyaleMplYXLZnkw/edit?usp=sharing" target="_blank">Download Resume</a>
+                </li>
+            </ul>
+        </section>
+
+        <p style="text-align: center; font-style: italic; color: #aaa; margin-top: 20px;">
+            REFERENCE ARE AVAILABLE UPON REQUEST
+        </p>
+        
+    </main>
+</body>
+</html>
